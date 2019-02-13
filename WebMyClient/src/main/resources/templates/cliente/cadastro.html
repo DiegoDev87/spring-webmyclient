@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br" 
+	  xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>PS-Cadastro de Cliente</title>
+		
+		<!-- bootstrap core CSS -->
+		<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+		
+	</head>
+	<body>
+	
+		<div class="container">
+	        <form action="#" id="formCadCliente" method="POST" th:object="${cliente}">
+	        	<div class="form-row">
+	        		<div class="form-group col-md-2">
+	        			<label for="tipoPessoa" id="pessoa" class="col-form-label-sm">Pessoa:</label>
+	        			<select id="tipoPessoa" name="tipoPessoa" th:field="*{tipoPessoa}" 
+	        					onchange="mudaMascaraParaCpfOuCnpj();" 
+	        				    class="form-control form-control-sm">
+	        				<option th:each="pessoa : ${pessoas}"
+	        						th:value="${pessoa.valor}"
+	        						th:text="${pessoa.descricao}"></option>	        				
+	        			</select>
+	        		</div>
+	        	</div>
+	            <div class="form-row">
+	                <div class="form-group col-md-8">
+	                	<label for="nome" class="col-form-label-sm"> Nome/Razão Social:</label>
+	                	<input type="text" name="nome" id="nome" th:field="*{nome}" 
+	                		   class="form-control form-control-sm">
+	                </div>  
+	                <div class="form-group col-md-4">
+	                    <label for="cpfOuCnpj" class="col-form-label-sm">CPF/CNPJ:</label>
+	                    <input type="text" name="cpfOuCnpj" id="cpfOuCnpj" th:field="*{cpfOuCnpj}" 
+	                    	   placeholder="000.000.000-00" data-mask="000.000.000-00" class="form-control form-control-sm">
+	                </div>
+	            </div>
+	            <div class="form-row">
+	            	<div class="form-group col-md-8">
+	            		<label for="nomeFantasia" class="col-form-label-sm"> Nome Fantasia:</label>
+	                	<input type="text" name="nomeFantasia" id="nomeFantasia" th:field="*{nomeFantasia}" 
+	                	       class="form-control form-control-sm">
+	            	</div>
+	            	<div class="form-group col-md-4">
+	            		<label for="inscricaoEstadual" class="col-form-label-sm"> Inscrição Estadual:</label>
+	                	<input type="text" name="nomeFantasia" id="nomeFantasia" th:field="*{inscricaoEstadual}" 
+	                	       class="form-control form-control-sm">
+	            	</div>
+	            </div>
+	            <div class="form-row">
+	                <div class="form-group col-md-4">
+	                    <label for="rg" class="col-form-label-sm" >RG:</label>
+	                    <input type="text" name="rg" id="rg" th:field="*{rg}" 
+	                           class="form-control form-control-sm">
+	                </div>
+	                <div class="form-group col-md-4">
+	                    <label for="dataNascimento" class="col-form-label-sm">Data de Nascimento:</label>
+	                    <input type="date" name="dataNascimento" id="dataNascimento" th:field="*{dataNascimento}" 
+	                    	   class="form-control form-control-sm">
+	                </div>
+	            </div>
+	           
+	            <ul class="nav nav-tabs" id="myTab" role="tablist">
+					<li class="nav-item">
+						<a class="nav-link active" id="contato-tab" data-toggle="tab" href="#contato" role="tab"
+							aria-controls="contato" aria-selected="true">Contato
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" id="endereco-tab"
+							data-toggle="tab" href="#endereco" role="tab"
+							aria-controls="endereco" aria-selected="false">Endereço
+						</a>
+					</li>
+				</ul>
+				
+				<div class="tab-content" id="myTabContent">
+					<!-- TAB CONTATO -->
+					<div class="tab-pane fade show active" id="contato"
+						role="tabpanel" aria-labelledby="contato-tab">
+						<div class="form-row">
+							<div class="form-group col-sm-6">
+								<label for="email" class="control-label">Email:</label>
+								<input type="email" id="email" name="email" th:field="*{email}" 
+								       class="form-control form-control-sm"/>
+							</div>
+							<div class="form-group col-sm-3">
+								<label for="fixo" class="control-label">Fixo:</label>
+								<input type="tel" id="fixo" name="fixo" 
+										data-mask="(00) 0000-0000"	class="form-control form-control-sm"/>
+							</div>
+							<div class="form-group col-sm-3">
+								<label for="celular" class="control-label">Celular:</label>
+								<input type="tel" id="celular" name="celular" 
+									data-mask="(00) 0.0000-0000"  class="form-control form-control-sm"/>
+							</div>
+						</div>
+					</div>
+					<!-- TAB ENDERECO -->
+					<div class="tab-pane fade" id="endereco" role="tabpanel"
+						aria-labelledby="endereco-tab">
+						<div class="form-row">
+							<div class="form-group col-sm-3">
+								<label for="cep" class="control-label">CEP:</label>
+								<input type="text" id="cep" name="cep" onblur="pesquisacep()" th:field="*{endereco.cep}"
+									   data-mask="00000-000" class="form-control form-control-sm"/>
+							</div>
+							<div class="col-sm-9" style="margin-top: 32px;">
+								<button type="button" onclick="pesquisacep()"
+									class="btn btn-primary btn-sm">
+									<i class="fas fa-search"></i> Pesquisar
+								</button>
+							</div>
+							<div class="form-group col-sm-10">
+								<label for="logradouro" class="control-label">Logradouro:</label>
+								<input type="text" id="logradouro" name="logradouro" th:field="*{endereco.logradouro}" 
+									   class="form-control form-control-sm" />
+							</div>
+							<div class="form-group col-sm-2">
+								<label for="numero" class="control-label">Número:</label>
+								<input type="text" id="numero" name="numero" th:field="*{endereco.numero}" 
+									   class="form-control form-control-sm" />
+							</div>
+							<div class="form-group col-sm-2">
+								<label for="estado" class="control-label">Estado:</label>
+								<input type="text" id="estado" name="estado" th:field="*{endereco.uf}" 
+									   class="form-control form-control-sm"/>
+							</div>
+							<div class="form-group col-sm-5">
+								<label for="cidade" class="control-label">Cidade:</label>
+								<input type="text" id="cidade" name="cidade" th:field="*{endereco.cidade}" 
+								       class="form-control form-control-sm"/>
+							</div>
+							<div class="form-group col-sm-5">
+								<label for="bairro" class="control-label">Bairro:</label>
+								<input type="text" id="bairro" name="bairro" th:field="*{endereco.bairro}" 
+									   class="form-control form-control-sm"/>
+							</div>
+							<div class="form-group col-sm-12">
+								<label for="complemento" class="control-label">Complemento:</label>
+								<input type="text" id="complemento" name="complemento" th:field="*{endereco.complemento}" 
+								       class="form-control form-control-sm"/>
+							</div>
+						</div>	
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="col-md-12">
+						<button type="button" class="btn btn-primary btn-sm" onclick="salvar();">
+							Salvar
+						</button>
+					</div>
+				</div>
+	        </form>
+	    </div>
+		
+		<script src="/webjars/jquery/jquery.min.js"></script>
+		<script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
+		<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+		<script src="../js/funcoesCadastroCliente.js"></script>
+	</body>
+</html>
