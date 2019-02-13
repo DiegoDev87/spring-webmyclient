@@ -1,11 +1,11 @@
 function mudaMascaraParaCpfOuCnpj() {
 	let valorTipoPessoa = $("#tipoPessoa").val();
 	let cpfOuCnpj = $("#cpfOuCnpj");
-	if (valorTipoPessoa == 1) {
+	if (valorTipoPessoa == 'F') {
 		cpfOuCnpj.val("");
 		cpfOuCnpj.attr("placeholder", "000.000.000-00");
 		cpfOuCnpj.unmask().mask("000.000.000-00");
-	} else if (valorTipoPessoa == 2) {
+	} else if (valorTipoPessoa == 'J') {
 		cpfOuCnpj.val("");
 		cpfOuCnpj.attr("placeholder", "00.000.000/0000-00");
 		cpfOuCnpj.unmask().mask("00.000.000/0000-00");
