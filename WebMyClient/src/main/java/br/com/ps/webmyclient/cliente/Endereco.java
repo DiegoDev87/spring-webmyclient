@@ -11,8 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import br.com.ps.webmyclient.generico.Pessoa;
-
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "endereco_cliente")
@@ -23,9 +21,10 @@ public class Endereco implements Serializable {
 	private String cep;
 	private String logradouro;
 	private String bairro;
-	private String ciadde;
+	private String cidade;
 	private String uf;
 	private String complemento;
+	private String numero;
 
 	public Endereco() {
 	}
@@ -79,12 +78,12 @@ public class Endereco implements Serializable {
 	}
 
 	@Column(name = "cidade", length = 50)
-	public String getCiadde() {
-		return ciadde;
+	public String getCidade() {
+		return cidade;
 	}
 
-	public void setCiadde(String ciadde) {
-		this.ciadde = ciadde;
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
 	}
 
 	@Column(name = "uf", length = 2)
@@ -103,6 +102,15 @@ public class Endereco implements Serializable {
 
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
+	}
+
+	@Column(name = "numero", length = 10)
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
 	}
 
 	@Override

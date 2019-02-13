@@ -1,10 +1,14 @@
 package br.com.ps.webmyclient.cliente;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import br.com.ps.webmyclient.generico.Pessoa;
 
@@ -18,7 +22,7 @@ public class Cliente extends Pessoa {
 	private String nomeFantasia;
 	private String inscricaoEstadual;
 	private String email;
-	private LocalDate dataNascimento;
+	private Date dataNascimento;
 
 	public Cliente() {
 	}
@@ -67,13 +71,15 @@ public class Cliente extends Pessoa {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	@Column(name = "data_nascimento", length = 10, columnDefinition = "DATE")
-	public LocalDate getDataNascimento() {
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
+	@Column(name = "data_nascimento", length = 10)
+	public Date getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(LocalDate dataNascimento) {
+	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 

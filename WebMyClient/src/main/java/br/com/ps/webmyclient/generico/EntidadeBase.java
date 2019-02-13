@@ -1,23 +1,23 @@
 package br.com.ps.webmyclient.generico;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @SuppressWarnings("serial")
 @MappedSuperclass
 public abstract class EntidadeBase implements Serializable {
 
 	private int id;
-	private LocalDate dataCadastro;
-	private LocalDate horaCadastro;
-	private LocalDate dataAlteracao;
-	private LocalDate horaAlteracao;
+	private Date dataCadastro;
+	private Date dataAlteracao;
 
 	public EntidadeBase() {
 	}
@@ -33,40 +33,24 @@ public abstract class EntidadeBase implements Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "data_cadastro", nullable = false, updatable = false, columnDefinition = "DATE")
-	public LocalDate getDataCadastro() {
+	@Temporal(TemporalType.DATE)
+	@Column(name = "data_cadastro", nullable = false, updatable = false)
+	public Date getDataCadastro() {
 		return dataCadastro;
 	}
 
-	public void setDataCadastro(LocalDate dataCadastro) {
+	public void setDataCadastro(Date dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
 
-	@Column(name = "hora_cadastro", nullable = false, updatable = false, columnDefinition = "TIME")
-	public LocalDate getHoraCadastro() {
-		return horaCadastro;
-	}
-
-	public void setHoraCadastro(LocalDate horaCadastro) {
-		this.horaCadastro = horaCadastro;
-	}
-
-	@Column(name = "data_alteracao", nullable = true, updatable = true, columnDefinition = "DATE")
-	public LocalDate getDataAlteracao() {
+	@Temporal(TemporalType.DATE)
+	@Column(name = "data_alteracao", nullable = true, updatable = true)
+	public Date getDataAlteracao() {
 		return dataAlteracao;
 	}
 
-	public void setDataAlteracao(LocalDate dataAlteracao) {
+	public void setDataAlteracao(Date dataAlteracao) {
 		this.dataAlteracao = dataAlteracao;
-	}
-
-	@Column(name = "hora_alteracao", nullable = true, updatable = true, columnDefinition = "TIME")
-	public LocalDate getHoraAlteracao() {
-		return horaAlteracao;
-	}
-
-	public void setHoraAlteracao(LocalDate horaAlteracao) {
-		this.horaAlteracao = horaAlteracao;
 	}
 
 	@Override

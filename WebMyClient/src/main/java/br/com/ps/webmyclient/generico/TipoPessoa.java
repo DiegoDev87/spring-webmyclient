@@ -1,26 +1,26 @@
 package br.com.ps.webmyclient.generico;
 
 public enum TipoPessoa {
+	
+	PESSOA_FISICA('F', "Pessoa Física"),
+	PESSOA_JURIDICA('J', "Pessoa Jurídica"); 
 
-	PESSOA_JURIDICA(1, "Pessoa Jurídica"), 
-	PESSOA_FISICA(2, "Pessoa Física");
-
-	private int valor;
+	private char valor;
 	private String descricao;
 
-	private TipoPessoa(int valor, String descricao) {
+	private TipoPessoa(char valor, String descricao) {
 		this.valor = valor;
 		this.descricao = descricao;
 	}
 
-	public TipoPessoa descobrePessoa(int valor) {
-		if (valor == 2) {
+	public TipoPessoa descobrePessoa(char valor) {
+		if (valor == 'J') {
 			return TipoPessoa.PESSOA_JURIDICA;
 		}
 		return TipoPessoa.PESSOA_FISICA;
 	}
 
-	public int getValor() {
+	public char getValor() {
 		return valor;
 	}
 
