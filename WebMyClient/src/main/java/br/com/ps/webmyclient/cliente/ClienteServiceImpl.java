@@ -1,5 +1,8 @@
 package br.com.ps.webmyclient.cliente;
 
+import java.util.Comparator;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -60,6 +63,17 @@ public class ClienteServiceImpl implements ClienteService {
 	@Override
 	public Cliente buscarPorCnpj(String cnpj) {
 		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Cliente> todos() {
+		List<Cliente> clientes = repository.findAll();
+		if (clientes != null && !clientes.isEmpty()) {
+			Comparator<Cliente> comparator = (c1, c2) -> (c1.getId() - c2.getId());
+			clientes.sort(comparator);
+			return clientes;
+		}
 		return null;
 	}
 
