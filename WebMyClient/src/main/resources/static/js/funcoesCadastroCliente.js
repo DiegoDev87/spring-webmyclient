@@ -1,13 +1,11 @@
 function mudaMascaraParaCpfOuCnpj() {
 	let valorTipoPessoa = $("#tipoPessoa").val();
 	let cpfOuCnpj = $("#cpfOuCnpj");
-	if(!cpfOuCnpj){
+	if(cpfOuCnpj){
 		if (valorTipoPessoa == 'F') {
-			cpfOuCnpj.val("");
 			cpfOuCnpj.attr("placeholder", "000.000.000-00");
 			cpfOuCnpj.unmask().mask("000.000.000-00");
 		} else if (valorTipoPessoa == 'J') {
-			cpfOuCnpj.val("");
 			cpfOuCnpj.attr("placeholder", "00.000.000/0000-00");
 			cpfOuCnpj.unmask().mask("00.000.000/0000-00");
 		}
@@ -48,7 +46,7 @@ function salvar() {
 			type : 'POST',
 			data : form.serialize(),
 			beforeSend : function() {
-				console.log('enviando...');
+				console.log('enviando...')
 			},
 			success : function(data) {
 				if(data){
@@ -56,7 +54,7 @@ function salvar() {
 				}
 			},
 			error : function(xhr, status) {
-				console.log(xhr.status);
+				alert(xhr.status);
 			}
 		});
 	}
