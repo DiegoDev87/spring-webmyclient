@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>PS-MyClient</title>
+		
+		<!-- bootstrap core CSS -->
+		<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css"  />
+		
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" 
+			 integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" 
+			 crossorigin="anonymous">
+		<link rel="stylesheet" th:href="@{/css/home-style.css}" >
+		
+	</head>
+	<body>
+		
+		<nav class="navbar navbar-light" style="background-color: #0069c0;">
+		   <a class="navbar-brand" href="#">
+		    <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+		    MyClient
+		  </a>
+		  <form class="form-inline">
+		  	
+		  	<div class="input-group">
+		      <div class="input-group-prepend">
+		        <span class="input-group-text" id="basic-addon1">
+		        	<i class="fas fa-at"></i>
+		        </span>
+		      </div>
+		      <input type="email" class="form-control form-control-sm mr-sm-2" placeholder="E-mail">
+		    </div>
+		    
+		    <div class="input-group">
+		      <div class="input-group-prepend">
+		        <span class="input-group-text">
+		        	<i class="fas fa-unlock-alt"></i>
+		        </span>
+		      </div>
+		      <input type="password" class="form-control form-control-sm mr-sm-2" placeholder="Senha">
+		    </div>
+		    
+		    <button class="btn  btn-outline-primary btn-sm my-2 my-sm-0" type="submit">
+		    	<i class="fas fa-sign-in-alt"></i> Entrar
+		    </button>
+		  </form>
+		</nav>
+		<div class="bg container-fluid">
+			<div class="row">
+				
+				<div class="col-md-6 offset-md-6">
+					<div class="card  bg-light mb-3" style="margin: 10px;">
+					  <div class="card-header">
+					  		<h3>Criar uma nova conta</h3>
+					  </div>
+					  <div class="card-body">
+					  	<form action="#" method="POST" id="formCadUsuario" 
+					  		  th:object="${usuario}" th:action="@{/usuario/cadastro/salvar}">
+					  		  
+					  		  <input type="hidden" id="id" name="id" th:field="*{id}">
+					  		  
+						  	 <div class="form-row">
+							  	<div class="form-group col-md-6">
+								  	<div class="input-group">
+								      <div class="input-group-prepend">
+								        <span class="input-group-text" >
+								        	<i class="fas fa-user"></i>
+								        </span>
+								      </div>
+								      <input type="text" id="nome" name="nome" th:field="*{nome}"
+								      	     class="form-control form-control-sm mr-sm-2" placeholder="Nome">
+								    </div>
+							  	</div>
+							  	<div class="form-group col-md-6">
+								  	<div class="input-group">
+								      <div class="input-group-prepend">
+								        <span class="input-group-text" >
+								        	<i class="fas fa-user"></i>
+								        </span>
+								      </div>
+								      <input type="text" id="sobrenome" name="sobrenome" th:field="*{sobrenome}"
+								      	     class="form-control form-control-sm mr-sm-2" placeholder="Sobrenome">
+								    </div>
+							  	</div>
+							  </div>
+						  		
+							  <div class="form-row">
+							  	<div class="form-group col-md-12">
+								  	<div class="input-group">
+								      <div class="input-group-prepend">
+								        <span class="input-group-text" >
+								        	<i class="fas fa-at"></i>
+								        </span>
+								      </div>
+								      <input type="email" id="email" name="email" th:field="*{email}"
+								      		 class="form-control form-control-sm mr-sm-2" placeholder="E-mail">
+								    </div>
+							  	</div>
+							  </div>
+							  
+							  <div class="form-row">
+							  	<div class="form-group col-md-6">
+								  	<div class="input-group">
+								      <div class="input-group-prepend">
+								        <span class="input-group-text" >
+								        	<i class="fas fa-unlock-alt"></i>
+								        </span>
+								      </div>
+								      <input type="password" id="senha" name="senha" th:field="*{senha}"
+								      	     class="form-control form-control-sm mr-sm-2" placeholder="Senha">
+								    </div>
+							  	</div>
+							  	<div class="form-group col-md-6">
+								  	<div class="input-group">
+								      <div class="input-group-prepend">
+								        <span class="input-group-text" >
+								        	<i class="fas fa-unlock-alt"></i>
+								        </span>
+								      </div>
+								      <input type="password" id="senhaConfirma" name="senhaConfirma" th:field="*{senhaConfima}"
+								      	     class="form-control form-control-sm mr-sm-2" placeholder="Confirmar">
+								    </div>
+							  	</div>
+							  </div>
+							  
+							  <div class="form-row">
+							  
+							  <div class="form-group col-md-6">
+							  		<label for="dataNascimento" class="col-form-label-sm">Data de nascimento:</label>
+								  	<div class="input-group">
+								      <div class="input-group-prepend">
+								        <span class="input-group-text" >
+								        	<i class="fas fa-calendar-alt"></i>
+								        </span>
+								      </div>
+								      <input type="date" id="dataNascimento" name="dataNascimento" th:field="*{dataNascimento}"
+								      	    class="form-control form-control-sm mr-sm-2">
+								    </div>
+							  	</div>
+							  
+							    <div class="form-group col-md-6">
+			        				<label for="sexo" class="col-form-label-sm">Sexo:</label>
+			        				<div class="input-group">
+								      <div class="input-group-prepend">
+								        <span class="input-group-text" >
+								        	<i class="fas fa-transgender"></i>
+								        </span>
+								      </div>
+								      	<select id="sexo" name="sexo" th:field="*{sexo}"
+					        				     class="form-control form-control-sm">
+					        				<option selected="selected" value="">Selecione...</option>
+					        				<option th:each="sexo : ${sexos}"
+					        						th:value="${sexo.valor}"
+					        						th:text="${sexo.descricao}">
+					        			    </option>	        				
+					        			</select>
+								    </div>
+				        		</div>
+							  </div>
+							  <div class="form-row">
+							  	<div class="col-md-12">
+								  	<button class="btn btn-primary" type="button" onclick="salvar()">
+								  		Criar
+								  	</button>
+							  	</div>
+							  </div>
+						</form>
+					  </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<script src="/webjars/jquery/jquery.min.js"></script>
+		<script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
+		<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+		<script th:src="@{/js/funcoesCadastroUsuario.js}"></script>
+	</body>
+</html>
