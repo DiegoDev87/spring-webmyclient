@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ClienteServiceImpl implements ClienteService {
@@ -12,6 +13,7 @@ public class ClienteServiceImpl implements ClienteService {
 	@Autowired
 	private ClienteRepository repository;
 
+	@Transactional(readOnly = true)
 	@Override
 	public Cliente buscarPorId(int id) {
 		if (id > 0) {
@@ -23,6 +25,7 @@ public class ClienteServiceImpl implements ClienteService {
 		return null;
 	}
 
+	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public Cliente salvar(Cliente cliente) {
 
@@ -66,6 +69,7 @@ public class ClienteServiceImpl implements ClienteService {
 		return null;
 	}
 
+	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public List<Cliente> todos() {
 		List<Cliente> clientes = repository.findAll();

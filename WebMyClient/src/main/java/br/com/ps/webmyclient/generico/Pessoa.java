@@ -15,7 +15,7 @@ import br.com.ps.webmyclient.cliente.Endereco;
 public abstract class Pessoa extends EntidadeBase {
 
 	private String nome; // nome ou razão social
-	private char tipoPessoa; // F = FISICA; J = JURIDICA
+	private String tipoPessoa; // F = FISICA; J = JURIDICA
 	private Endereco endereco;
 	private String sexo;
 
@@ -34,16 +34,19 @@ public abstract class Pessoa extends EntidadeBase {
 	}
 
 	@Column(name = "tipo_pessoa", nullable = false, length = 1)
-	public char getTipoPessoa() {
+	public String getTipoPessoa() {
 		return tipoPessoa;
 	}
 
-	public void setTipoPessoa(char tipoPessoa) {
+	public void setTipoPessoa(String tipoPessoa) {
 		this.tipoPessoa = tipoPessoa;
 	}
 
 	@OneToOne(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	public Endereco getEndereco() {
+		if(this.endereco == null) {
+			this.endereco = new Endereco();
+		}
 		return endereco;
 	}
 

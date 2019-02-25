@@ -71,7 +71,7 @@ public class Cliente extends Pessoa {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	@Column(name = "data_nascimento", length = 10)

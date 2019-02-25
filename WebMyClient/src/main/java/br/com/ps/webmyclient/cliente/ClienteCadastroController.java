@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.ps.webmyclient.generico.Sexo;
-import br.com.ps.webmyclient.generico.TipoPessoa;
+import br.com.ps.webmyclient.enums.Sexo;
+import br.com.ps.webmyclient.enums.TipoPessoa;
 
 @Controller
 @RequestMapping("/cliente")
@@ -23,7 +23,7 @@ public class ClienteCadastroController {
 	private ClienteService clienteService;
 
 	@GetMapping("/cadastro")
-	public ModelAndView index() {
+	public ModelAndView cadastro() {
 		Cliente cliente = new Cliente();
 		ModelAndView mav = new ModelAndView("/cliente/cadastro");
 		mav.addObject("cliente", cliente);

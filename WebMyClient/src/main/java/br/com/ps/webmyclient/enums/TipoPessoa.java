@@ -1,4 +1,4 @@
-package br.com.ps.webmyclient.generico;
+package br.com.ps.webmyclient.enums;
 
 public enum TipoPessoa {
 	
